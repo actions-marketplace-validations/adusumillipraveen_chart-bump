@@ -41,4 +41,6 @@ else
   CHART_VERSION=$(yq r $CHART_PATH 'version')
   NEW_VERSION=$(echo $CHART_VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g' )
   yq w -i $CHART_PATH version $NEW_VERSION
+  git commit -am "Bumping chart version"
+  git push
 fi
